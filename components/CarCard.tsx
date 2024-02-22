@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { CarProps } from "@/constants";
 import CustomButton from "./CustomButton";
-import { calculateCarRent } from "@/utils";
 import CarDetails from "./CarDetails";
 
 const generateCarImageUrl = (car: CarProps, angle?: string) => {
