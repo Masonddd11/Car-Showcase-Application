@@ -1,7 +1,6 @@
 "use client";
 
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { ShowMoreProps } from "@/types";
 import CustomButton from "./CustomButton";
 
@@ -19,25 +18,13 @@ const ShowMore = ({ pageNumber, isNext }: ShowMoreProps) => {
   const router = useRouter();
 
   const handleNavigation = () => {
+    
     const newLimit = (pageNumber + 1) * 10;
 
     const newPathname = updateSearchParams("limit", `${newLimit}`);
 
     router.push(newPathname);
   };
-
-  useEffect(() => {
-    const handleRouteChange = () => {
-      window.scrollTo(0, document.body.scrollHeight);
-    };
-
-    router.events.on('routeChangeComplete', handleRouteChange);
-
-    // Clean up the event listener when the component is unmounted
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
 
   return (
     <div className="w-full flex-center gap-5 mt-10">
