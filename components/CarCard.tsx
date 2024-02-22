@@ -10,18 +10,21 @@ const generateCarImageUrl = (car: CarProps, angle?: string) => {
   const url = new URL("https://cdn.imagin.studio/getimage");
   const { make, model, year } = car;
 
-  url.searchParams.append('customer', process.env.NEXT_PUBLIC_IMAGIN_API_KEY || '');
-  url.searchParams.append('make', make);
-  if (typeof model === 'string') {
-    url.searchParams.append('modelFamily', model.split(" ")[0]);
+  url.searchParams.append(
+    "customer",
+    process.env.NEXT_PUBLIC_IMAGIN_API_KEY || ""
+  );
+  url.searchParams.append("make", make);
+  if (typeof model === "string") {
+    url.searchParams.append("modelFamily", model.split(" ")[0]);
   }
-  url.searchParams.append('zoomType', 'fullscreen');
-  url.searchParams.append('modelYear', `${year}`);
+  url.searchParams.append("zoomType", "fullscreen");
+  url.searchParams.append("modelYear", `${year}`);
   // url.searchParams.append('zoomLevel', zoomLevel);
-  url.searchParams.append('angle', `${angle}`);
+  url.searchParams.append("angle", `${angle}`);
 
   return `${url}`;
-} 
+};
 
 interface CarCardProps {
   car: CarProps;
@@ -65,7 +68,7 @@ const CarCard = ({ car }: CarCardProps) => {
 
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
-          src={generateCarImageUrl(make, model)}
+          src={generateCarImageUrl(car)}
           alt="car model"
           fill
           objectFit="contain"
@@ -107,7 +110,11 @@ const CarCard = ({ car }: CarCardProps) => {
         </div>
       </div>
 
-      <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} />
+      <CarDetails
+        isOpen={isOpen}
+        closeModal={() => setIsOpen(false)}
+        car={car}
+      />
     </div>
   );
 };
