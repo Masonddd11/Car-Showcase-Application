@@ -17,8 +17,7 @@ const updateSearchParams = (type: string, value: string) => {
 const ShowMore = ({ pageNumber, isNext }: ShowMoreProps) => {
   const router = useRouter();
 
-  const handleNavigation = (e) => {
-    e.preventDefault();
+  const handleNavigation = () => {
     
     const newLimit = (pageNumber + 1) * 10;
 
